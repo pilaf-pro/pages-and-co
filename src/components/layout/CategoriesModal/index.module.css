@@ -1,0 +1,126 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal {
+  background-color: #f7ede2;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 24px 24px 0 0;
+  padding: 24px 20px 40px;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 24px 0;
+  font-style: italic;
+}
+
+.closeBtn {
+  background: rgba(0, 0, 0, 0.04);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.closeBtn:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.item:active,
+.item:hover {
+  background-color: var(--color-gold);
+  color: var(--text-primary);
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(206, 157, 83, 0.2);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: rgba(140, 56, 53, 0.1);
+  color: #8c3835;
+  transition: all var(--transition-fast);
+}
+
+.item:hover .iconWrapper,
+.item:active .iconWrapper {
+  background-color: #ffffff;
+  color: #8c3835;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  color: inherit;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

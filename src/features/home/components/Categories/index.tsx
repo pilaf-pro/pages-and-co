@@ -1,14 +1,15 @@
 import { type JSX } from 'react';
+import { Link } from 'react-router-dom';
 import SectionHeader from '@/components/ui/SectionHeader';
 import styles from './index.module.css';
 
 const categories = [
-  { name: 'Fiction', count: 3, color: 'var(--card-brown)' },
-  { name: 'Mystery', count: 2, color: 'var(--card-blue)' },
-  { name: 'Sci-Fi', count: 2, color: 'var(--card-teal)' },
-  { name: 'Poetry', count: 2, color: 'var(--card-red)' },
-  { name: 'Children', count: 2, color: 'var(--card-yellow)' },
-  { name: 'Non-fiction', count: 2, color: 'var(--card-purple)' },
+  { id: 1, name: 'Fiction', count: 18, color: 'var(--card-brown)' },
+  { id: 2, name: 'Mystery', count: 11, color: 'var(--card-blue)' },
+  { id: 3, name: 'Sci-Fi', count: 7, color: 'var(--card-teal)' },
+  { id: 5, name: 'Poetry', count: 4, color: 'var(--card-red)' },
+  { id: 6, name: 'Children', count: 5, color: 'var(--card-yellow)' },
+  { id: 4, name: 'Non-fiction', count: 5, color: 'var(--card-purple)' },
 ];
 
 const Categories = (): JSX.Element => {
@@ -19,9 +20,9 @@ const Categories = (): JSX.Element => {
 
         <div className={styles.categories__grid}>
           {categories.map((cat) => (
-            <a
-              href="#"
-              key={cat.name}
+            <Link
+              to={`/books/${cat.id}`}
+              key={cat.id}
               className={styles.category}
               style={{
                 background: `linear-gradient(to bottom right, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0) 100%), ${cat.color}`,
@@ -29,7 +30,7 @@ const Categories = (): JSX.Element => {
             >
               <h3 className={styles.category__name}>{cat.name}</h3>
               <p className={styles.category__count}>{cat.count} titles</p>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,0 +1,36 @@
+.header {
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.header__title {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-xs) 0;
+  line-height: 1.2;
+}
+
+.header__subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .header {
+    text-align: left;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .header__title {
+    font-size: 56px;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .header__subtitle {
+    font-size: 16px;
+  }
+}

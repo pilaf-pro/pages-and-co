@@ -1,0 +1,79 @@
+.container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: rgba(247, 237, 226, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(140, 56, 53, 0.15);
+  z-index: 1000;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
+  min-width: 260px;
+  justify-content: space-around;
+  animation: tabEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tabEnter {
+  from {
+    transform: translate(-50%, 80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+
+.containerHide {
+  transform: translate(-50%, 150px) !important;
+  opacity: 0 !important;
+  pointer-events: none;
+  animation: none !important;
+}
+
+.tabBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 12px;
+  gap: 4px;
+  transition: all var(--transition-fast);
+  border-radius: 12px;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tabBtnActive {
+  color: #8c3835;
+  transform: scale(1.05);
+}
+
+.icon {
+  font-size: 22px !important;
+}
+
+.label {
+  font-family: var(--font-sans);
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: none;
+  }
+}

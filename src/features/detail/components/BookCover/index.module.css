@@ -1,0 +1,66 @@
+.coverContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.cover {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--spacing-xl);
+  box-sizing: border-box;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.coverText {
+  width: 100%;
+}
+
+.coverText h2 {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 6px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.coverText p {
+  font-size: 14px;
+  margin: 0;
+  opacity: 0.9;
+  font-style: italic;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card__badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  z-index: 5;
+}
+
+.card__badge[data-badge='BESTSELLER'] {
+  background-color: var(--color-gold);
+  right: auto;
+  left: 24px;
+}
+
+@media (min-width: 768px) {
+  .cover {
+    max-width: 100%;
+  }
+}

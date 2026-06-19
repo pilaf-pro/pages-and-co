@@ -1,8 +1,10 @@
 import { type JSX } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './index.module.css';
-import { truncateWords } from '@/utils/textUtils';
+import { truncateWords, truncateSmartMobileTitle } from '@/utils/textUtils';
 
 interface BookCardProps {
+  id: number;
   title: string;
   author: string;
   price: number;
@@ -11,8 +13,8 @@ interface BookCardProps {
   bgColor: string;
   badge?: string;
 }
-
 const BookCard = ({
+  id,
   title,
   author,
   price,
@@ -22,7 +24,7 @@ const BookCard = ({
   badge,
 }: BookCardProps): JSX.Element => {
   return (
-    <article className={styles.card}>
+    <Link to={`/detail/${id}`} className={styles.card}>
       <div
         className={styles.card__cover}
         style={{
@@ -35,12 +37,19 @@ const BookCard = ({
           </span>
         )}
         <div className={styles['card__cover-text']}>
-          <h4>{truncateWords(title, 4)}</h4>
+          <h4>{title}</h4>
           <p>{author}</p>
         </div>
       </div>
       <div className={styles.card__info}>
-        <h3 className={styles.card__title}>{truncateWords(title, 4)}</h3>
+        <h3 className={styles.card__title}>
+          <span className={styles['card__title--mobile']}>
+            {truncateSmartMobileTitle(title)}
+          </span>
+          <span className={styles['card__title--desktop']}>
+            {truncateWords(title, 4)}
+          </span>
+        </h3>
         <p className={styles.card__author}>{author}</p>
         <div className={styles.card__meta}>
           <div className={styles.card__pricing}>
@@ -65,7 +74,7 @@ const BookCard = ({
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 };
 

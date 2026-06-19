@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         element: <ListPage />,
       },
       {
-        path: 'detail',
+        path: 'detail/:id',
         element: <DetailPage />,
       },
       {
