@@ -1,8 +1,19 @@
-import { type JSX } from "react";
-import { Link } from "react-router-dom";
-import styles from "./index.module.css";
+import { type JSX, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './index.module.css';
+import XIcon from '@mui/icons-material/X';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 const Footer = (): JSX.Element => {
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (section: string) => {
+    setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
+  };
+
   return (
     <footer className={styles.footer}>
       <div className="container">
@@ -10,7 +21,7 @@ const Footer = (): JSX.Element => {
           {/* Col 1 */}
           <div>
             <Link to="/" className={styles.footer__logo}>
-              <div className={styles["footer__logo-icon"]}>P</div>
+              <div className={styles['footer__logo-icon']}>P</div>
               Pages & Co.
             </Link>
             <p className={styles.footer__desc}>
@@ -18,22 +29,36 @@ const Footer = (): JSX.Element => {
               Open since 1998.
             </p>
             <div className={styles.footer__socials}>
-              <a href="#" className={styles["footer__social-link"]}>
-                in
+              <a href="#" className={styles['footer__social-link']}>
+                <LinkedInIcon fontSize="small" />
               </a>
-              <a href="#" className={styles["footer__social-link"]}>
-                x
+              <a href="#" className={styles['footer__social-link']}>
+                <XIcon fontSize="small" />
               </a>
-              <a href="#" className={styles["footer__social-link"]}>
-                f
+              <a href="#" className={styles['footer__social-link']}>
+                <FacebookIcon fontSize="small" />
               </a>
             </div>
           </div>
 
           {/* Col 2 */}
-          <div>
-            <h4 className={styles.footer__title}>SHOP</h4>
-            <ul className={styles.footer__list}>
+          <div className={styles.footer__section}>
+            <h4
+              className={styles.footer__title}
+              onClick={() => toggleSection('shop')}
+            >
+              SHOP
+              <span className={styles.footer__titleIcon}>
+                {openSections['shop'] ? (
+                  <ExpandLessIcon fontSize="small" />
+                ) : (
+                  <ExpandMoreIcon fontSize="small" />
+                )}
+              </span>
+            </h4>
+            <ul
+              className={`${styles.footer__list} ${openSections['shop'] ? styles['footer__list--open'] : ''}`}
+            >
               <li>
                 <Link to="/new" className={styles.footer__link}>
                   New arrivals
@@ -63,9 +88,23 @@ const Footer = (): JSX.Element => {
           </div>
 
           {/* Col 3 */}
-          <div>
-            <h4 className={styles.footer__title}>ABOUT</h4>
-            <ul className={styles.footer__list}>
+          <div className={styles.footer__section}>
+            <h4
+              className={styles.footer__title}
+              onClick={() => toggleSection('about')}
+            >
+              ABOUT
+              <span className={styles.footer__titleIcon}>
+                {openSections['about'] ? (
+                  <ExpandLessIcon fontSize="small" />
+                ) : (
+                  <ExpandMoreIcon fontSize="small" />
+                )}
+              </span>
+            </h4>
+            <ul
+              className={`${styles.footer__list} ${openSections['about'] ? styles['footer__list--open'] : ''}`}
+            >
               <li>
                 <Link to="/story" className={styles.footer__link}>
                   Our story
@@ -90,9 +129,23 @@ const Footer = (): JSX.Element => {
           </div>
 
           {/* Col 4 */}
-          <div>
-            <h4 className={styles.footer__title}>HELP</h4>
-            <ul className={styles.footer__list}>
+          <div className={styles.footer__section}>
+            <h4
+              className={styles.footer__title}
+              onClick={() => toggleSection('help')}
+            >
+              HELP
+              <span className={styles.footer__titleIcon}>
+                {openSections['help'] ? (
+                  <ExpandLessIcon fontSize="small" />
+                ) : (
+                  <ExpandMoreIcon fontSize="small" />
+                )}
+              </span>
+            </h4>
+            <ul
+              className={`${styles.footer__list} ${openSections['help'] ? styles['footer__list--open'] : ''}`}
+            >
               <li>
                 <Link to="/shipping" className={styles.footer__link}>
                   Shipping
@@ -117,9 +170,9 @@ const Footer = (): JSX.Element => {
           </div>
 
           {/* Col 5 */}
-          <div>
+          <div className={styles.footer__section}>
             <h4 className={styles.footer__title}>THE READING ROOM</h4>
-            <p className={styles["footer__newsletter-desc"]}>
+            <p className={styles['footer__newsletter-desc']}>
               One handpicked recommendation in your inbox each week.
             </p>
             <form
@@ -137,8 +190,10 @@ const Footer = (): JSX.Element => {
             </form>
           </div>
         </div>
+      </div>
 
-        <div className={styles.footer__bottom}>
+      <div className={styles.footer__bottomWrapper}>
+        <div className={`container ${styles.footer__bottom}`}>
           <p>© 2026 Pages & Co. - Privacy - Terms</p>
           <p>Free shipping on orders over $35</p>
         </div>

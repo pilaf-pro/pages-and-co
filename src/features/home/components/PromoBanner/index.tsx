@@ -1,5 +1,5 @@
-import { type JSX } from "react";
-import styles from "./index.module.css";
+import { type JSX } from 'react';
+import styles from './index.module.css';
 
 const PromoBanner = (): JSX.Element => {
   return (

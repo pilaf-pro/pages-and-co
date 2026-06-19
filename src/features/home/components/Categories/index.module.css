@@ -2,26 +2,6 @@
   margin-bottom: var(--spacing-4xl);
 }
 
-.categories__header {
-  margin-bottom: var(--spacing-lg);
-}
-
-.categories__kicker {
-  font-size: 11px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-accent);
-  margin-bottom: var(--spacing-xs);
-}
-
-.categories__title {
-  font-family: var(--font-serif);
-  font-size: 32px;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
 .categories__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -35,7 +15,7 @@
   border-radius: var(--radius-sm);
   padding: var(--spacing-md);
   color: #fff;
-  height: 90px;
+  height: 100px;
   text-decoration: none;
   transition: transform var(--transition-fast);
 }
@@ -46,6 +26,7 @@
 }
 
 .category__name {
+  font-family: var(--font-sans);
   font-size: 16px;
   font-weight: bold;
 }

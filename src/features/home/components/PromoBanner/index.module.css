@@ -20,7 +20,7 @@
 }
 
 .banner__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 32px;
   line-height: 1.2;
   margin-bottom: var(--spacing-md);
@@ -33,14 +33,41 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+.promoBanner__btn {
+  background-color: #f7ede2;
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.promoBanner__btn:hover {
+  background-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .banner__btn {
   background-color: var(--color-gold);
   color: var(--text-primary);
   font-weight: 600;
-  padding: 10px 24px;
+  padding: 12px 24px;
   border-radius: var(--radius-full);
   font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
   white-space: nowrap;
+}
+
+.banner__btn:hover {
+  background-color: #d1b145;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 768px) {

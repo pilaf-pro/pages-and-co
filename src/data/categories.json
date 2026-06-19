@@ -1,0 +1,10 @@
+[
+  { "id": "All", "name": "All" },
+  { "id": "Fiction", "name": "Fiction" },
+  { "id": "Mystery", "name": "Mystery" },
+  { "id": "Sci-Fi", "name": "Sci-Fi" },
+  { "id": "Non-fiction", "name": "Non-fiction" },
+  { "id": "Poetry", "name": "Poetry" },
+  { "id": "Children", "name": "Children" },
+  { "id": "Biography", "name": "Biography" }
+]

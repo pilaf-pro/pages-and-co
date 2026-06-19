@@ -1,6 +1,7 @@
-import { type JSX } from "react";
-import BookCard from "@/components/ui/BookCard";
-import styles from "./index.module.css";
+import { type JSX } from 'react';
+import BookCard from '@/components/ui/BookCard';
+import SectionHeader from '@/components/ui/SectionHeader';
+import styles from './index.module.css';
 
 interface Book {
   id: string;
@@ -27,15 +28,12 @@ const FeaturedGrid = ({
   return (
     <section className="container">
       <div className={styles.section}>
-        <div className={styles.section__header}>
-          <div>
-            <p className={styles.section__kicker}>{kicker}</p>
-            <h2 className={styles.section__title}>{title}</h2>
-          </div>
-          <a href="#" className={styles.section__link}>
-            View all &rarr;
-          </a>
-        </div>
+        <SectionHeader
+          kicker={kicker}
+          title={title}
+          linkText="View all"
+          linkHref="#"
+        />
 
         <div className={styles.section__grid}>
           {books.map((book) => (
