@@ -1,31 +1,48 @@
-import { type JSX } from "react";
-import Hero from "@/features/home/components/Hero";
-import Categories from "@/features/home/components/Categories";
-import FeaturedGrid from "@/features/home/components/FeaturedGrid";
-import PromoBanner from "@/features/home/components/PromoBanner";
-import homeBooks from "@/data/homeBooks.json";
+import { type JSX } from 'react';
+import Hero from '@/features/home/components/Hero';
+import Categories from '@/features/home/components/Categories';
+import FeaturedGrid from '@/features/home/components/FeaturedGrid';
+import PromoBanner from '@/features/home/components/PromoBanner';
+import FadeInSection from '@/components/ui/FadeInSection';
+import books from '@/data/books.json';
 
 const HomePage = (): JSX.Element => {
+  const editorsPicks = books.filter((b) => b.isEditorsPick);
+  const bestsellers = books.filter((b) => b.isBestseller);
+  const newArrivals = books.filter((b) => b.isNewArrival);
+
   return (
-    <div style={{ paddingTop: "24px" }}>
-      <Hero />
-      <Categories />
-      <FeaturedGrid
-        kicker="EDITOR'S PICKS"
-        title="Featured this month"
-        books={homeBooks.editorsPicks}
-      />
-      <PromoBanner />
-      <FeaturedGrid
-        kicker="MOST LOVED"
-        title="Bestsellers"
-        books={homeBooks.bestsellers}
-      />
-      <FeaturedGrid
-        kicker="HOT OFF THE PRESS"
-        title="New arrivals"
-        books={homeBooks.newArrivals}
-      />
+    <div style={{ paddingTop: '24px' }}>
+      <FadeInSection>
+        <Hero />
+      </FadeInSection>
+      <FadeInSection>
+        <Categories />
+      </FadeInSection>
+      <FadeInSection>
+        <FeaturedGrid
+          kicker="EDITOR'S PICKS"
+          title="Featured this month"
+          books={editorsPicks}
+        />
+      </FadeInSection>
+      <FadeInSection>
+        <PromoBanner />
+      </FadeInSection>
+      <FadeInSection>
+        <FeaturedGrid
+          kicker="MOST LOVED"
+          title="Bestsellers"
+          books={bestsellers}
+        />
+      </FadeInSection>
+      <FadeInSection>
+        <FeaturedGrid
+          kicker="HOT OFF THE PRESS"
+          title="New arrivals"
+          books={newArrivals}
+        />
+      </FadeInSection>
     </div>
   );
 };

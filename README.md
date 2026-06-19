@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# Pages & Co.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the frontend application for Pages & Co. This repository is built using React, Vite, and TypeScript, configured with modern frontend architecture and tooling.
 
-Currently, two official plugins are available:
+## Installation & Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project uses [Bun](https://bun.sh/) as its primary package manager and runtime for speed and efficiency.
 
-## React Compiler
+### Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Make sure you have [Bun installed](https://bun.sh/docs/installation) on your machine.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+curl -fsSL https://bun.sh/install | bash
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Steps
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Clone the repository** (if not already done)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+   ```bash
+   git clone <repository-url>
+   cd pages-and-co
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   bun install
+   ```
+
+3. **Start the development server**
+   ```bash
+   bun run dev
+   ```
+   _The application will typically start at `http://localhost:5173/`._
+
+### Available Scripts
+
+- `bun run dev` - Starts the Vite development server.
+- `bun run build` - Compiles TypeScript and builds the production bundle.
+- `bun run preview` - Locally preview the production build.
+- `bun run lint` - Runs ESLint to check for code issues.
+- `bun run type-check` - Runs the TypeScript compiler to verify type correctness.
+
+---
+
+## Project Structure
+
+The project follows a feature-based architecture to keep code modular, scalable, and easy to navigate.
+
+```text
+src/
+├── assets/          # Static assets like images and global SVG icons
+├── components/      # Reusable UI components used across multiple features
+│   ├── layout/      # Layout components (Header, Footer, MainLayout)
+│   └── ui/          # Generic UI components (BookCard, FadeInSection)
+├── data/            # Static mock data sources (books.json, categories.json)
+├── features/        # Feature-specific modules
+│   ├── checkout/    # UI of Checkout page
+│   ├── detail/      # UI of Book Details page
+│   ├── home/        # UI of Home page
+│   └── list/        # UI of List/Category page
+├── layouts/         # High-level layout wrappers for pages
+├── routes/          # Routing configuration (react-router-dom)
+├── styles/          # Global styles, CSS variables, and resets
+├── utils/           # Helper functions and utilities (e.g., textUtils)
+├── App.tsx          # Main Application component that initializes the router
+└── main.tsx         # React entry point
 ```
+
+### Core Technologies
+
+- **React 19**
+- **Vite** (Build tool)
+- **TypeScript** (Static typing)
+- **CSS Modules** (Component-scoped styling)
+- **React Router v7** (Client-side routing)
+- **Bun** (Package management)
+- **ESLint / Prettier** (Code formatting & linting)
