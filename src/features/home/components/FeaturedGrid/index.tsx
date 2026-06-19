@@ -4,7 +4,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import styles from './index.module.css';
 
 interface Book {
-  id: string;
+  id: number;
   title: string;
   author: string;
   price: number;

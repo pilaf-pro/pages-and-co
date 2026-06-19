@@ -1,0 +1,127 @@
+.itemCard {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.cover {
+  width: 60px;
+  height: 80px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.author {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+}
+
+.btnRemove {
+  background: none;
+  border: none;
+  color: #8c3835;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  width: fit-content;
+  text-decoration: none;
+  text-align: left;
+}
+
+.btnRemove:hover {
+  text-decoration: underline;
+}
+
+.quantityContainer {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 4px;
+}
+
+.quantitySelector {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(60, 50, 38, 0.2);
+  border-radius: var(--radius-full);
+  padding: 2px;
+}
+
+.quantityBtn {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: opacity 0.2s;
+}
+
+.quantityBtn:hover {
+  opacity: 0.7;
+}
+
+.quantityValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 24px;
+  text-align: center;
+}
+
+.priceContainer {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -36px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-accent);
+}
+
+@media (min-width: 576px) {
+  .itemCard {
+    grid-template-columns: auto 1fr auto auto;
+    gap: 24px;
+  }
+
+  .quantityContainer {
+    grid-column: auto;
+    margin-top: 0;
+  }
+
+  .priceContainer {
+    grid-column: auto;
+    margin-top: 0;
+    align-self: center;
+  }
+}

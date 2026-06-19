@@ -1,6 +1,8 @@
 import { type JSX, useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BookCard from '@/components/ui/BookCard';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import PageHeader from '@/components/ui/PageHeader';
 import FilterBar from '../components/FilterBar';
 import FadeInSection from '@/components/ui/FadeInSection';
 import books from '@/data/books.json';
@@ -11,14 +13,19 @@ const ListPage = (): JSX.Element => {
   const { category } = useParams<{ category?: string }>();
   const navigate = useNavigate();
 
-  const activeCategory = category || 'All';
+  const activeCategoryId = useMemo(() => {
+    if (!category || category === 'All') return 0;
+    const parsed = parseInt(category, 10);
+    return isNaN(parsed) ? 0 : parsed;
+  }, [category]);
+
   const [sortBy, setSortBy] = useState('featured');
 
   const displayedBooks = useMemo(() => {
     // Filter
     let filtered = books;
-    if (activeCategory !== 'All') {
-      filtered = books.filter((b) => b.categoryIds.includes(activeCategory));
+    if (activeCategoryId !== 0) {
+      filtered = books.filter((b) => b.categoryIds.includes(activeCategoryId));
     }
 
     // Sort (create a copy to avoid mutating original json array)
@@ -38,37 +45,37 @@ const ListPage = (): JSX.Element => {
       }
       return 0;
     });
-  }, [activeCategory, sortBy]);
+  }, [activeCategoryId, sortBy]);
 
-  const handleCategoryChange = (newCategory: string) => {
+  const handleCategoryChange = (newCategory: number) => {
     navigate(`/books/${newCategory}`);
   };
 
+  const activeCategoryObj = useMemo(() => {
+    return categories.find((c) => c.id === activeCategoryId);
+  }, [activeCategoryId]);
+
   const pageTitle =
-    activeCategory === 'All' ? 'All books' : `${activeCategory} books`;
+    activeCategoryId === 0
+      ? 'All books'
+      : `${activeCategoryObj?.name || ''} books`;
 
   return (
     <div className={styles.page}>
       <div className="container">
-        {/* Breadcrumb */}
-        <div className={styles.page__breadcrumb}>
-          <span>Home</span>{' '}
-          <span className={styles.page__breadcrumbSeparator}>/</span>{' '}
-          <span className={styles.page__breadcrumbActive}>Books</span>
-        </div>
+        <Breadcrumb
+          items={[{ label: 'Home', href: '/' }, { label: 'Books' }]}
+        />
 
-        {/* Header */}
-        <div className={styles.page__header}>
-          <h1 className={styles.page__title}>{pageTitle}</h1>
-          <p className={styles.page__subtitle}>
-            {displayedBooks.length} titles in the collection
-          </p>
-        </div>
+        <PageHeader
+          title={pageTitle}
+          subtitle={`${displayedBooks.length} titles in the collection`}
+        />
 
         {/* FilterBar */}
         <FilterBar
           categories={categories}
-          activeCategory={activeCategory}
+          activeCategory={activeCategoryId}
           onCategoryChange={handleCategoryChange}
           sortBy={sortBy}
           onSortChange={setSortBy}

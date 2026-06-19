@@ -1,0 +1,223 @@
+/* Right Column: Info */
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoriesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.categoryTag {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: rgba(140, 56, 53, 0.08);
+  color: #8c3835;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-xs) 0;
+  line-height: 1.2;
+}
+
+.author {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.ratingIcon {
+  color: var(--color-gold);
+}
+
+.metaDivider {
+  color: var(--border-color);
+}
+
+.priceSection {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: var(--spacing-md);
+}
+
+.price {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-accent);
+}
+
+.priceOriginal {
+  font-size: 18px;
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-xl) 0;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.btnPrimary {
+  background-color: #8c3835;
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.2s;
+  box-shadow: 0 4px 12px rgba(140, 56, 53, 0.15);
+}
+
+.btnPrimary:active {
+  opacity: 0.9;
+}
+
+.btnPrimaryAdded {
+  background-color: var(--border-color);
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  border: none;
+  cursor: not-allowed;
+  text-align: center;
+  box-shadow: none;
+}
+
+.btnGoToBag {
+  background-color: #8c3835;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  box-shadow: 0 4px 12px rgba(140, 56, 53, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnGoToBag:hover {
+  opacity: 0.9;
+}
+
+.btnSecondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  border: 1px solid rgba(60, 50, 38, 0.25);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.btnSecondary:active {
+  background-color: rgba(60, 50, 38, 0.05);
+}
+
+/* Specs Grid */
+.specsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md) var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-xl);
+}
+
+.specLabel {
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.specValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+@media (min-width: 576px) {
+  .actions {
+    flex-direction: row;
+  }
+  .btnPrimary {
+    flex: 2;
+  }
+  .btnPrimaryAdded {
+    flex: 1.5;
+  }
+  .btnGoToBag {
+    flex: 1.5;
+  }
+  .btnSecondary {
+    flex: 1;
+  }
+  .specsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 48px;
+  }
+}

@@ -1,10 +1,34 @@
 [
-  { "id": "All", "name": "All" },
-  { "id": "Fiction", "name": "Fiction" },
-  { "id": "Mystery", "name": "Mystery" },
-  { "id": "Sci-Fi", "name": "Sci-Fi" },
-  { "id": "Non-fiction", "name": "Non-fiction" },
-  { "id": "Poetry", "name": "Poetry" },
-  { "id": "Children", "name": "Children" },
-  { "id": "Biography", "name": "Biography" }
+  {
+    "id": 0,
+    "name": "All"
+  },
+  {
+    "id": 1,
+    "name": "Fiction"
+  },
+  {
+    "id": 2,
+    "name": "Mystery"
+  },
+  {
+    "id": 3,
+    "name": "Sci-Fi"
+  },
+  {
+    "id": 4,
+    "name": "Non-fiction"
+  },
+  {
+    "id": 5,
+    "name": "Poetry"
+  },
+  {
+    "id": 6,
+    "name": "Children"
+  },
+  {
+    "id": 7,
+    "name": "Biography"
+  }
 ]

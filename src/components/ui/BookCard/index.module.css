@@ -9,6 +9,8 @@
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
   height: 100%;
+  text-decoration: none;
+  color: inherit;
 }
 
 .card:hover {
@@ -40,13 +42,14 @@
 }
 .card__cover-text h4 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 1.2;
   margin-bottom: 4px;
 }
 .card__cover-text p {
   font-size: 10px;
   opacity: 0.8;
+  font-style: italic;
 }
 
 .card__badge {
@@ -90,6 +93,22 @@
   color: var(--text-primary);
   line-height: 1.3;
   transition: color 0.2s ease;
+}
+
+.card__title--desktop {
+  display: none;
+}
+.card__title--mobile {
+  display: inline;
+}
+
+@media (min-width: 768px) {
+  .card__title--desktop {
+    display: inline;
+  }
+  .card__title--mobile {
+    display: none;
+  }
 }
 
 .card:hover .card__title {

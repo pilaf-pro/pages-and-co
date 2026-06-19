@@ -1,0 +1,32 @@
+.breadcrumb {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+  text-align: center;
+}
+
+.breadcrumb__link {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.breadcrumb__link:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb__separator {
+  margin: 0 var(--spacing-sm);
+  color: var(--text-secondary);
+}
+
+.breadcrumb__active {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .breadcrumb {
+    text-align: left;
+    margin-bottom: var(--spacing-sm);
+  }
+}
