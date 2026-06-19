@@ -1,0 +1,109 @@
+.hero {
+  background-color: var(--bg-green-dark);
+  color: var(--text-inverse);
+  padding: var(--spacing-3xl) var(--spacing-4xl);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--spacing-4xl);
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+}
+
+.hero__kicker {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-md);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-lg);
+  font-weight: 500;
+}
+
+.hero__desc {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: var(--spacing-xl);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero__btn {
+  background-color: var(--color-gold);
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+}
+
+.hero__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font-size: 20px;
+  z-index: 2;
+}
+
+.hero__nav--prev {
+  left: var(--spacing-md);
+}
+
+.hero__nav--next {
+  right: var(--spacing-md);
+}
+
+.hero__dots {
+  position: absolute;
+  bottom: var(--spacing-md);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.hero__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.hero__dot--active {
+  width: 20px;
+  border-radius: 3px;
+  background-color: var(--color-gold);
+}
+
+/* Tablet & Mobile tweaks */
+@media (max-width: 768px) {
+  .hero {
+    padding: var(--spacing-2xl) var(--spacing-md);
+    min-height: 400px;
+  }
+  .hero__title {
+    font-size: 36px;
+  }
+}

@@ -1,0 +1,140 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) 0;
+  flex-wrap: wrap;
+  row-gap: var(--spacing-md);
+}
+
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+.header__logo-icon {
+  background-color: var(--text-accent);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: var(--spacing-sm);
+  font-size: 16px;
+}
+
+.header__nav {
+  display: none;
+}
+
+.header__nav-list {
+  display: flex;
+  gap: var(--spacing-md);
+  font-size: 14px;
+}
+
+.header__nav-link {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.header__search {
+  position: relative;
+  display: none;
+}
+
+.header__search-input {
+  padding: 8px 12px 8px 32px;
+  border-radius: var(--radius-full);
+  border: 1px solid #ccc;
+  background-color: transparent;
+  font-size: 13px;
+  width: 180px;
+}
+
+.header__search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+}
+
+.header__signin {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid #ccc;
+  background-color: transparent;
+}
+
+.header__bag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bg-dark);
+  color: var(--text-inverse);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.header__bag-count {
+  background-color: var(--color-gold);
+  color: var(--text-primary);
+  font-size: 11px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Tablet & Desktop */
+@media (min-width: 768px) {
+  .header {
+    flex-wrap: nowrap;
+    row-gap: 0;
+  }
+
+  .header__nav {
+    display: block;
+    margin: 0 var(--spacing-md);
+  }
+
+  .header__search {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__nav-list {
+    gap: var(--spacing-lg);
+  }
+}
