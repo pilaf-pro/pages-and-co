@@ -2,17 +2,20 @@ import { type JSX } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 import { truncateWords, truncateSmartMobileTitle } from '@/utils/textUtils';
+import type { Book } from '@/types/book';
 
-interface BookCardProps {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  originalPrice?: number;
-  rating: number;
-  bgColor: string;
-  badge?: string;
-}
+type BookCardProps = Pick<
+  Book,
+  | 'id'
+  | 'title'
+  | 'author'
+  | 'price'
+  | 'originalPrice'
+  | 'rating'
+  | 'bgColor'
+  | 'badge'
+>;
+
 const BookCard = ({
   id,
   title,

@@ -1,15 +1,41 @@
-import { type JSX, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { type JSX, useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import StarIcon from '@mui/icons-material/Star';
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
 import LoginModal from '@/features/auth/components/LoginModal';
 import { getCartCount } from '@/utils/cartUtils';
+import type { Book } from '@/types/book';
+import Fuse from 'fuse.js';
+import books from '@/data/books.json';
+import categories from '@/data/categories.json';
 import styles from './index.module.css';
+
+const booksWithGenres = (books as Book[]).map((book) => ({
+  ...book,
+  genres: book.categoryIds
+    .map((id) => categories.find((c) => c.id === id)?.name)
+    .filter(Boolean),
+}));
+
+const fuse = new Fuse(booksWithGenres, {
+  keys: ['title', 'author', 'genres'],
+  threshold: 0.3,
+});
 
 const Header = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [cartCount, setCartCount] = useState(getCartCount());
+  const navigate = useNavigate();
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<typeof booksWithGenres>(
+    []
+  );
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleUpdate = () => {
@@ -18,6 +44,35 @@ const Header = (): JSX.Element => {
     window.addEventListener('cart-updated', handleUpdate);
     return () => window.removeEventListener('cart-updated', handleUpdate);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (query.trim() === '') {
+      setSearchResults([]);
+      setIsDropdownOpen(false);
+    } else {
+      const results = fuse.search(query).map((r) => r.item);
+      setSearchResults(results.slice(0, 5));
+      setIsDropdownOpen(true);
+    }
+  };
+
+  const handleResultClick = (id: number) => {
+    setIsDropdownOpen(false);
+    setSearchQuery('');
+    navigate(`/detail/${id}`);
+  };
 
   return (
     <>
@@ -94,7 +149,7 @@ const Header = (): JSX.Element => {
           </nav>
 
           {/* Search */}
-          <div className={styles.header__search}>
+          <div className={styles.header__search} ref={searchRef}>
             <svg
               className={styles['header__search-icon']}
               fill="none"
@@ -112,7 +167,61 @@ const Header = (): JSX.Element => {
               type="text"
               placeholder="Search titles, authors..."
               className={styles['header__search-input']}
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onFocus={() => {
+                if (searchQuery.trim() !== '') setIsDropdownOpen(true);
+              }}
             />
+            {isDropdownOpen && (
+              <div className={styles.searchDropdown}>
+                {searchResults.length > 0 ? (
+                  searchResults.map((book) => (
+                    <div
+                      key={book.id}
+                      className={styles.searchResultItem}
+                      onClick={() => handleResultClick(book.id)}
+                    >
+                      <div
+                        className={styles.searchResultColorBox}
+                        style={{ backgroundColor: book.bgColor }}
+                      />
+                      <div className={styles.searchResultContent}>
+                        <div className={styles.searchResultHeader}>
+                          <div className={styles.searchResultTitle}>
+                            {book.title}
+                          </div>
+                          {book.badge === 'BESTSELLER' && (
+                            <StarIcon
+                              className={styles.searchResultBadge}
+                              style={{ color: '#fbbf24' }}
+                              fontSize="small"
+                            />
+                          )}
+                          {book.badge === 'NEW' && (
+                            <NewReleasesIcon
+                              className={styles.searchResultBadge}
+                              style={{ color: '#3b82f6' }}
+                              fontSize="small"
+                            />
+                          )}
+                        </div>
+                        <div className={styles.searchResultAuthor}>
+                          {book.author}
+                        </div>
+                      </div>
+                      <div className={styles.searchResultPrice}>
+                        ${book.price.toFixed(2)}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className={styles.searchResultEmpty}>
+                    No results found.
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Actions */}

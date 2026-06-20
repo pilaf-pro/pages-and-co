@@ -5,9 +5,13 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import PageHeader from '@/components/ui/PageHeader';
 import FilterBar from '../components/FilterBar';
 import FadeInSection from '@/components/ui/FadeInSection';
-import books from '@/data/books.json';
+import Pagination from '@/components/ui/Pagination';
+import booksData from '@/data/books.json';
 import categories from '@/data/categories.json';
+import type { Book } from '@/types/book';
 import styles from './index.module.css';
+
+const books = booksData as Book[];
 
 const ListPage = (): JSX.Element => {
   const { category } = useParams<{ category?: string }>();
@@ -20,8 +24,16 @@ const ListPage = (): JSX.Element => {
   }, [category]);
 
   const [sortBy, setSortBy] = useState('featured');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [prevCategory, setPrevCategory] = useState(activeCategoryId);
 
-  const displayedBooks = useMemo(() => {
+  if (activeCategoryId !== prevCategory) {
+    setPrevCategory(activeCategoryId);
+    setCurrentPage(1);
+  }
+
+  const allFilteredBooks = useMemo(() => {
     // Filter
     let filtered = books;
     if (activeCategoryId !== 0) {
@@ -47,6 +59,12 @@ const ListPage = (): JSX.Element => {
     });
   }, [activeCategoryId, sortBy]);
 
+  const totalPages = Math.ceil(allFilteredBooks.length / pageSize);
+  const displayedBooks = allFilteredBooks.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
   const handleCategoryChange = (newCategory: number) => {
     navigate(`/books/${newCategory}`);
   };
@@ -69,7 +87,7 @@ const ListPage = (): JSX.Element => {
 
         <PageHeader
           title={pageTitle}
-          subtitle={`${displayedBooks.length} titles in the collection`}
+          subtitle={`${allFilteredBooks.length} titles in the collection`}
         />
 
         {/* FilterBar */}
@@ -78,7 +96,10 @@ const ListPage = (): JSX.Element => {
           activeCategory={activeCategoryId}
           onCategoryChange={handleCategoryChange}
           sortBy={sortBy}
-          onSortChange={setSortBy}
+          onSortChange={(val) => {
+            setSortBy(val);
+            setCurrentPage(1);
+          }}
         />
 
         {/* Grid */}
@@ -90,6 +111,18 @@ const ListPage = (): JSX.Element => {
               </div>
             ))}
           </div>
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+            pageSize={pageSize}
+            onPageSizeChange={(val) => {
+              setPageSize(val);
+              setCurrentPage(1);
+            }}
+            totalItems={allFilteredBooks.length}
+          />
         </FadeInSection>
       </div>
     </div>

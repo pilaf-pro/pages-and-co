@@ -6,6 +6,8 @@ interface SectionHeaderProps {
   title: string;
   linkText?: string;
   linkHref?: string;
+  onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  hideLinkOnMobile?: boolean;
 }
 
 const SectionHeader = ({
@@ -13,6 +15,8 @@ const SectionHeader = ({
   title,
   linkText,
   linkHref,
+  onLinkClick,
+  hideLinkOnMobile,
 }: SectionHeaderProps): JSX.Element => {
   return (
     <div className={styles.header}>
@@ -20,8 +24,12 @@ const SectionHeader = ({
         <p className={styles.kicker}>{kicker}</p>
         <h2 className={styles.title}>{title}</h2>
       </div>
-      {linkText && linkHref && (
-        <a href={linkHref} className={styles.link}>
+      {linkText && (linkHref || onLinkClick) && (
+        <a
+          href={linkHref || '#'}
+          onClick={onLinkClick}
+          className={`${styles.link} ${hideLinkOnMobile ? styles.hideOnMobile : ''}`}
+        >
           {linkText} &rarr;
         </a>
       )}
