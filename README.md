@@ -19,8 +19,8 @@ curl -fsSL https://bun.sh/install | bash
 1. **Clone the repository** (if not already done)
 
    ```bash
-   git clone https://github.com/pilaf-pro/EZGames_Frontend_Test.git
-   cd EZGames_Frontend_Test
+   git clone https://github.com/pilaf-pro/pages-and-co.git
+   cd pages-and-co
    ```
 
 2. **Install dependencies**
