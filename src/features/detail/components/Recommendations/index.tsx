@@ -1,18 +1,8 @@
 import { type JSX } from 'react';
 import BookCard from '@/components/ui/BookCard';
 import FadeInSection from '@/components/ui/FadeInSection';
+import type { Book } from '@/types/book';
 import styles from './index.module.css';
-
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  originalPrice?: number;
-  rating: number;
-  bgColor: string;
-  badge?: string;
-}
 
 interface RecommendationsProps {
   books: Book[];
