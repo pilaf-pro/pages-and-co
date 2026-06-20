@@ -1,13 +1,16 @@
 import { type JSX, useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import books from '@/data/books.json';
+import booksData from '@/data/books.json';
+import type { Book } from '@/types/book';
 import { addToCart, getCart } from '@/utils/cartUtils';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import BookCover from '../components/BookCover';
 import BookInfo from '../components/BookInfo';
 import Recommendations from '../components/Recommendations';
 import styles from './index.module.css';
+
+const books = booksData as Book[];
 
 const DetailPage = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();

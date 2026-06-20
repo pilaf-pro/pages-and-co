@@ -19,8 +19,8 @@ curl -fsSL https://bun.sh/install | bash
 1. **Clone the repository** (if not already done)
 
    ```bash
-   git clone <repository-url>
-   cd pages-and-co
+   git clone https://github.com/pilaf-pro/EZGames_Frontend_Test.git
+   cd EZGames_Frontend_Test
    ```
 
 2. **Install dependencies**
@@ -54,7 +54,7 @@ src/
 ├── assets/          # Static assets like images and global SVG icons
 ├── components/      # Reusable UI components used across multiple features
 │   ├── layout/      # Layout components (Header, Footer, MainLayout)
-│   └── ui/          # Generic UI components (BookCard, FadeInSection)
+│   └── ui/          # Generic UI components (BookCard, Pagination, FadeInSection)
 ├── data/            # Static mock data sources (books.json, categories.json)
 ├── features/        # Feature-specific modules
 │   ├── checkout/    # UI of Checkout page
@@ -64,6 +64,7 @@ src/
 ├── layouts/         # High-level layout wrappers for pages
 ├── routes/          # Routing configuration (react-router-dom)
 ├── styles/          # Global styles, CSS variables, and resets
+├── types/           # TypeScript interfaces and types (e.g., book.ts)
 ├── utils/           # Helper functions and utilities (e.g., textUtils)
 ├── App.tsx          # Main Application component that initializes the router
 └── main.tsx         # React entry point

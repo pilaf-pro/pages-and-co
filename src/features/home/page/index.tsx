@@ -4,8 +4,11 @@ import Categories from '@/features/home/components/Categories';
 import FeaturedGrid from '@/features/home/components/FeaturedGrid';
 import PromoBanner from '@/features/home/components/PromoBanner';
 import FadeInSection from '@/components/ui/FadeInSection';
-import books from '@/data/books.json';
+import booksData from '@/data/books.json';
+import type { Book } from '@/types/book';
 import styles from './index.module.css';
+
+const books = booksData as Book[];
 
 const HomePage = (): JSX.Element => {
   const editorsPicks = books.filter((b) => b.isEditorsPick);

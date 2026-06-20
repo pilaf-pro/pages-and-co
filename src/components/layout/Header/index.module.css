@@ -271,3 +271,106 @@
     gap: var(--spacing-lg);
   }
 }
+
+/* Search Dropdown */
+.searchDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-top: var(--spacing-xs);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin: 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  background-color: transparent;
+}
+
+.searchResultItem:last-child {
+  border-bottom: none;
+}
+
+.searchResultItem:hover {
+  background-color: var(--bg-secondary);
+  margin: 0 calc(-1 * var(--spacing-sm));
+  padding: var(--spacing-sm) calc(var(--spacing-md) + var(--spacing-sm));
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-md);
+  border-color: transparent;
+}
+
+.searchResultColorBox {
+  width: 32px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.searchResultContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.searchResultHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: 2px;
+}
+
+.searchResultTitle {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0;
+  transition: all 0.2s ease;
+}
+
+.searchResultItem:hover .searchResultTitle {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.searchResultBadge {
+  flex-shrink: 0;
+  font-size: 16px !important;
+}
+
+.searchResultPrice {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.searchResultAuthor {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.searchResultEmpty {
+  padding: var(--spacing-md);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
