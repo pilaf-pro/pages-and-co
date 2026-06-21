@@ -101,7 +101,7 @@
   padding: 8px 32px 8px 16px;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: transparent;
+  background-color: #fcf7ee;
   color: var(--text-primary);
   font-size: 14px;
   cursor: pointer;

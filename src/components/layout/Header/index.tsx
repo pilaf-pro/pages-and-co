@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
-import LoginModal from '@/features/auth/components/LoginModal';
+import LoginModal from '@/features/auth/components/AuthModal';
 import { getCartCount } from '@/utils/cartUtils';
 import type { Book } from '@/types/book';
 import Fuse from 'fuse.js';
