@@ -19,8 +19,7 @@ interface AuthFormProps {
   submitLabel: string;
   footerText: string;
   footerLinkLabel: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  schema: z.ZodTypeAny;
+  schema: z.ZodType<Record<string, string>>;
   onSuccess: () => void;
   onSwitchMode: () => void;
 }
@@ -41,7 +40,8 @@ export default function AuthForm({
     handleSubmit,
     formState: { errors },
   } = useForm<Record<string, string>>({
-    resolver: zodResolver(schema) as Resolver<Record<string, string>>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(schema as any) as Resolver<Record<string, string>>,
     mode: 'onSubmit',
   });
 
