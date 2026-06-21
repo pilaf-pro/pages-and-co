@@ -27,8 +27,10 @@
 
 .category__name {
   font-family: var(--font-sans);
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .category__count {

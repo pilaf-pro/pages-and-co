@@ -2,8 +2,7 @@ import { type JSX, useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import StarIcon from '@mui/icons-material/Star';
-import NewReleasesIcon from '@mui/icons-material/NewReleases';
+
 import LoginModal from '@/features/auth/components/LoginModal';
 import { getCartCount } from '@/utils/cartUtils';
 import type { Book } from '@/types/book';
@@ -21,7 +20,8 @@ const booksWithGenres = (books as Book[]).map((book) => ({
 
 const fuse = new Fuse(booksWithGenres, {
   keys: ['title', 'author', 'genres'],
-  threshold: 0.3,
+  threshold: 0.4,
+  includeScore: true,
 });
 
 const Header = (): JSX.Element => {
@@ -62,8 +62,33 @@ const Header = (): JSX.Element => {
       setSearchResults([]);
       setIsDropdownOpen(false);
     } else {
-      const results = fuse.search(query).map((r) => r.item);
-      setSearchResults(results.slice(0, 5));
+      const q = query.trim().toLowerCase();
+
+      // Check if query matches a genre name exactly
+      const matchedCategory = categories.find(
+        (c) => c.name.toLowerCase() === q
+      );
+
+      let results: typeof booksWithGenres;
+
+      if (matchedCategory && matchedCategory.id !== 0) {
+        // Return all books in that genre first, then pad with fuzzy results
+        const genreBooks = booksWithGenres.filter((b) =>
+          b.categoryIds.includes(matchedCategory.id)
+        );
+        const fuzzyBooks = fuse
+          .search(query)
+          .map((r) => r.item)
+          .filter((b) => !b.categoryIds.includes(matchedCategory.id));
+        results = [...genreBooks, ...fuzzyBooks].slice(0, 8);
+      } else {
+        results = fuse
+          .search(query)
+          .map((r) => r.item)
+          .slice(0, 8);
+      }
+
+      setSearchResults(results);
       setIsDropdownOpen(true);
     }
   };
@@ -184,27 +209,13 @@ const Header = (): JSX.Element => {
                     >
                       <div
                         className={styles.searchResultColorBox}
-                        style={{ backgroundColor: book.bgColor }}
+                        style={{
+                          background: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%), ${book.bgColor}`,
+                        }}
                       />
                       <div className={styles.searchResultContent}>
-                        <div className={styles.searchResultHeader}>
-                          <div className={styles.searchResultTitle}>
-                            {book.title}
-                          </div>
-                          {book.badge === 'BESTSELLER' && (
-                            <StarIcon
-                              className={styles.searchResultBadge}
-                              style={{ color: '#fbbf24' }}
-                              fontSize="small"
-                            />
-                          )}
-                          {book.badge === 'NEW' && (
-                            <NewReleasesIcon
-                              className={styles.searchResultBadge}
-                              style={{ color: '#3b82f6' }}
-                              fontSize="small"
-                            />
-                          )}
+                        <div className={styles.searchResultTitle}>
+                          {book.title}
                         </div>
                         <div className={styles.searchResultAuthor}>
                           {book.author}

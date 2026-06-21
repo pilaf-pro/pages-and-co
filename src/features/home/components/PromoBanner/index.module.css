@@ -22,14 +22,14 @@
 
 .banner__title {
   font-family: var(--font-sans);
-  font-size: 32px;
+  font-size: 44px;
   line-height: 1.2;
   margin-bottom: var(--spacing-md);
   font-weight: 800;
 }
 
 .banner__desc {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.9);
 }

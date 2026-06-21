@@ -4,6 +4,7 @@ import HomePage from '@/features/home/page';
 import ListPage from '@/features/list/page';
 import DetailPage from '@/features/detail/page';
 import CheckoutPage from '@/features/checkout/page';
+import NotFoundPage from '@/features/not-found/page';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: 'checkout',
         element: <CheckoutPage />,
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },
