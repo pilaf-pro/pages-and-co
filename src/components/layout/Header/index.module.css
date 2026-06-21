@@ -288,6 +288,22 @@
   overflow-y: auto;
 }
 
+@media (max-width: 767px) {
+  .searchDropdown {
+    position: fixed;
+    top: 57px; /* below sticky header */
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: calc(100svh - 57px);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    margin-top: 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
 .searchResultItem {
   display: flex;
   align-items: center;
@@ -296,7 +312,7 @@
   margin: 0;
   cursor: pointer;
   border-bottom: 1px solid var(--border-color);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.2s ease;
   position: relative;
   background-color: transparent;
 }
@@ -307,12 +323,6 @@
 
 .searchResultItem:hover {
   background-color: var(--bg-secondary);
-  margin: 0 calc(-1 * var(--spacing-sm));
-  padding: var(--spacing-sm) calc(var(--spacing-md) + var(--spacing-sm));
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-radius: var(--radius-md);
-  border-color: transparent;
 }
 
 .searchResultColorBox {
@@ -328,32 +338,21 @@
   min-width: 0;
 }
 
-.searchResultHeader {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  margin-bottom: 2px;
-}
-
 .searchResultTitle {
   font-weight: 600;
   font-size: 14px;
   color: var(--text-primary);
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 0;
-  transition: all 0.2s ease;
+  word-break: break-word;
+  margin-bottom: 2px;
+  transition: color 0.2s ease;
 }
 
 .searchResultItem:hover .searchResultTitle {
-  white-space: normal;
-  word-break: break-word;
-}
-
-.searchResultBadge {
-  flex-shrink: 0;
-  font-size: 16px !important;
+  color: var(--text-accent);
 }
 
 .searchResultPrice {

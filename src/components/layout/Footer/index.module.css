@@ -57,6 +57,14 @@
   align-items: center;
   justify-content: center;
   color: var(--text-inverse);
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.footer__social-link:hover {
+  color: var(--color-gold-hover);
+  border-color: var(--color-gold-hover);
 }
 
 .footer__section {
