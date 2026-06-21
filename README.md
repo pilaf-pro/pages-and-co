@@ -57,10 +57,12 @@ src/
 │   └── ui/          # Generic UI components (BookCard, Pagination, FadeInSection)
 ├── data/            # Static mock data sources (books.json, categories.json)
 ├── features/        # Feature-specific modules
+│   ├── auth/        # Authentication pages (Login, Register)
 │   ├── checkout/    # UI of Checkout page
 │   ├── detail/      # UI of Book Details page
 │   ├── home/        # UI of Home page
-│   └── list/        # UI of List/Category page
+│   ├── list/        # UI of List/Category page
+│   └── not-found/   # UI of 404 Not Found page
 ├── layouts/         # High-level layout wrappers for pages
 ├── routes/          # Routing configuration (react-router-dom)
 ├── styles/          # Global styles, CSS variables, and resets
